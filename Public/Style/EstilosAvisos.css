@@ -1,0 +1,11 @@
+#AvisosEditar{
+    overflow: auto;
+    padding: 10px;
+}
+#TextoAvisos{
+   margin: 0;
+}
+
+#AvisosEditar::-webkit-scrollbar {
+    width: 20px; /* Ancho de la barra de desplazamiento */
+}

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/Style/StylePrincipal.css">
+    <link rel="stylesheet" href="/Style/StyleAdmin.css">
+
+    <title>Document</title>
+</head>
+<body>
+    <nav>
+        <h1>SISTEMA DE INFORMACION COETUS(SIC) ADMINISTRADORES</h1>
+        <ul class="menu">
+            <li id="subb"><a href="">Informar</a>
+                <ul class="submenu">
+                  <li><div onclick="togglePopup('Quejas')">Quejas</div></li>
+                  <li><div onclick="togglePopup('Sugerencias')">Sugerencias</div></li>
+                </ul>
+
+            </li>
+            <li style="height: fit-content;"><div onclick="togglePopup('Usuarios')" > Usuarios</div></li>
+            <li style="height: fit-content;"><div onclick="togglePopup('Avisos')" >Avisos </div></li>
+        </ul>
+    </nav>
+    <div class="contenido">
+
+        <div id="Pestana" style="width: 100%; height: 100%;">
+            
+        </div>
+
+    </div>
+
+
+    <div class="popup" id="Quejas">
+      <div class="overlay" onclick="togglePopupAddUsers()"></div>
+  <div class="content" style=" background-color: whitesmoke;width:fit-content;
+  height: fit-content; overflow:hidden; box-sizing:border-box; border:20px solid rgba(108, 192, 74, 1); border-radius: 30px; padding: 0;; ">
+    <div class="cont"style="width: fit-content ;height:fit-content;">
+      <div class="Cerrar" onclick="togglePopupAddUsers()" id="CerrarUsuarios">&times;</div>
+      <h2 style="color: rgba(108, 192, 74, 1) ;">Registrar Usuario</h2>
+
+
+          
+        <form action="" id="frmAggUsuario" enctype="application/x-www-form-urlencoded">
+  
+            <div class="Q">
+              <label for="Nombres">Nombres</label>
+              <input type="text" name="Nombres" id="Nombres">
+            </div>
+            <div class="Q">
+              <label for="Apellidos">Apellidos</label>
+              <input type="text" name="Apellidos" id="Apellidos">
+            </div>
+  
+            <div class="Q">
+              <label for="Correo">Correo</label>
+              <input type="email" name="Correo" id="Correo">
+            </div>
+            <div class="Q" id="Departamento">
+              <label for="Dep">Departamento</label>
+              <select id="Dep" name="Departamento" id="Departamento">
+                  <option value=""> seleccionar...</option>
+              </select>
+            </div>
+  
+            <div class="Q">
+              <label for="Ususario">Usuario</label>
+              <input type="text" name="Usuario" id="Ususario">
+            </div>
+  
+            <div class="Q">
+              <label for="Contraseña">Contraseña</label>
+              <input type="text" name="Contrasena" id="Contrasena">
+            </div>
+  
+            <div class="Q"><label for="Adm">Usuario Administrador</label>
+            <input type="checkbox" name="Adm"  id="Adm" value="0"></div>
+        </form>
+  
+      <div class="enviar" style="padding: 10px;">
+        <button type="button" id="btnAgregarUsuarios"> <b>Enviar</b></button>
+      </div>
+   
+    </div>
+    
+  </div>
+</div>
+
+  
+<!-- <div class="popup" id="Quejas">
+  <div class="overlay" onclick="togglePopupEditUsers()"></div>
+<div class="content" style=" background-color: whitesmoke;width:fit-content;
+height: fit-content; overflow:hidden; box-sizing:border-box; border:20px solid rgba(108, 192, 74, 1); border-radius: 30px; padding: 0;; ">
+<div class="cont"style="width: fit-content ;height:fit-content;">
+  <div class="Cerrar" onclick="togglePopupEditUsers()" id="CerrarUsuarios">&times;</div>
+  <h2 style="color: rgba(108, 192, 74, 1) ;">Editar Usuario</h2>
+
+
+      
+    <form action="" id="frmAggUsuario" enctype="application/x-www-form-urlencoded">
+
+        <div class="Q">
+          <label for="Nombres">Nombres</label>
+          <input type="text" name="Nombres" id="Nombres">
+        </div>
+        <div class="Q">
+          <label for="Apellidos">Apellidos</label>
+          <input type="text" name="Apellidos" id="Apellidos">
+        </div>
+
+        <div class="Q">
+          <label for="Correo">Correo</label>
+          <input type="email" name="Correo" id="Correo">
+        </div>
+        <div class="Q" id="Departamento">
+          <label for="Dep">Departamento</label>
+          <select id="Dep" name="Departamento" id="Departamento">
+              <option value=""> seleccionar...</option>
+          </select>
+        </div>
+
+        <div class="Q">
+          <label for="Ususario">Usuario</label>
+          <input type="text" name="Usuario" id="Ususario">
+        </div>
+
+        <div class="Q">
+          <label for="Contraseña">Contraseña</label>
+          <input type="text" name="Contrasena" id="Contrasena">
+        </div>
+
+        <div class="Q"><label for="Adm">Usuario Administrador</label>
+        <input type="checkbox" name="Adm"  id="Adm" value="0"></div>
+    </form>
+
+  <div class="enviar" style="padding: 10px;">
+    <button type="button" id="btnAgregarUsuarios"> <b>Enviar</b></button>
+  </div>
+
+</div>
+
+</div>
+</div> -->
+
+
+
+<script src="/Scripts/Administrador.js"></script>
+
+
+</body>
+</html>

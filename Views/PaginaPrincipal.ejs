@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/Style/StylePrincipal.css">
+    <link rel="stylesheet" href="/Style/EstilosAvisos.css">
+    <title>Document</title>
+</head>
+<body onload="RecuperarAviso()">
+    <nav>
+        <h1>SISTEMA DE INFORMACION COETUS (SIC)</h1>
+        <ul class="menu">
+            <li id="subb"><a href="">Informar</a>
+                <ul class="submenu">
+                  <li ><div onclick="togglePopupQuejas()" style="cursor:pointer;">Quejas</div></li>
+                  <li><div onclick="togglePopupQuejas()" style="cursor:pointer;">Sugerencias</div></li>
+                </ul>
+            </li>
+            
+
+        </ul>
+    </nav>
+    <div class="contenido">
+        <H1 style="color: rgba(108, 192, 74, 1); font-size: 60px;">¡Avisos!</H1>
+        <div class="Avisos" id="AvisosEditar" style="font-family: Arial, Helvetica, sans-serif;">
+            
+        </div>
+
+    </div>
+    <div class="popup" id="Quejas">
+        <div class="overlay" onclick="togglePopupQuejas()"></div>
+    <div class="content"  style=" background-color: rgba(108, 192, 74, 0.6);width: 430px;
+    height: 600px; box-sizing: border-box; border: 20px solid rgba(108, 192, 74, 0.6); border-radius: 30px; padding: 0;; ">
+      <div class="cont"style="width: fit-content;">
+        <div class="Cerrar" onclick="togglePopupQuejas()">&times;</div>
+        <h2 style="color: rgba(108, 192, 74, 1) ;">QUEJAS</h2>
+        <p>El siguiente formulario será eviado con tu nombre y tu departamento</p>
+        <div class="Queja">
+
+          
+          <form action="" id="frmQueja">
+
+              <div class="Q" id="QuejaSeccion">
+               <div>
+                <input type="radio" name="Categoria" id="Personal" value="Personal">
+                <label for="Personal"> Personal</label>
+               </div>
+
+                <div>
+                  <input type="radio" name="Categoria" id="Instalacion" value="Instalacion">
+                <label for="Instalacion">Instalacion</label>
+                </div>
+              
+                <div>
+                  <input type="radio" name="Categoria" id="Servicio" value="Servicio">
+                <label for="Servicio">Servicio</label>
+                </div>
+              
+                <div>
+                  <input type="radio" name="Categoria" id="Otro" value="Otro">
+                <label for="Otro">Otro</label>
+                </div>
+              </div>
+
+              <div class="Q" id="QuejaDepartamento">
+                <label for="QuejaDep">Departamento</label>
+                <select name="QuejaDep" id="QuejaDep">
+                    <option value=""> seleccionar...</option>
+                </select>
+              </div>
+
+              <div class="Q" id="QuejaRazon" >
+                <label for="RazonQueja">Razon</label>
+                <input type="text" name="RazonQueja" id="RazonQueja">
+
+              </div>
+          </form>
+
+        <div class="enviar" style="padding: 10px;">
+          <button type="button" id="btnEnviarQueja"> <b>Enviar</b></button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  </div>
+  
+  <script src="/Scripts/Principal.js"></script>
+  <script src="/Scripts/Avisos.js"> </script>
+
+ 
+</body>
+</html>
