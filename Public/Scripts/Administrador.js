@@ -146,7 +146,7 @@ function togglePopup(tipo){
 
         <div id="Herramientas">
             
-            <button id="SubirTxtbtn">Subir</button>
+            <button id="SubirTxtbtn" onclick="SubirText()">Subir</button>
         </div>
         <div id="TextoAviso">
             <div id="textareas" contenteditable="true">Escribe tu texto</div>
@@ -155,6 +155,7 @@ function togglePopup(tipo){
 
       </div>
       `
+      
     }
 }
 
@@ -453,24 +454,6 @@ async function Departamentos() {
   // mostrarDep(data)
 }
 
-//Busqueda de usuarios
-// async function Buscar() { 
-
-//       let form=document.getElementById('frmFiltrar');
-//       let fromdata=new FormData(form);
-//       const cadenaInicioSesion=new URLSearchParams(fromdata).toString()
-
-//       let response = await fetch("http://localhost:8080/Usuarios/Busqueda", { 
-//         method: "POST",
-//         headers: {'Content-Type': 'application/x-www-form-urlencoded' },
-//         body: cadenaInicioSesion
-//       });
-      
-//       let data = await response.json();
-//       console.log(data);
-
-//       InsertarEnUsuarios(data[0])
-// }
 
 
         //Este metodo es en el cual se hacen las insercciones en queja
@@ -718,5 +701,26 @@ function LimpiarFormularioUsuarios(){
 
 }
 
-const doc=document.getElementById('ContenedorText')
-console.log(doc);
+async function SubirText() {
+    const Txt=document.getElementById('textareas');
+    const content =Txt.innerText;
+
+
+    let headersList = {
+      "Content-Type": "application/json"
+     }
+     let bodyContent = JSON.stringify({
+       "content":content
+     });
+     
+     let response = await fetch("http://localhost:8080/Avisos/Editar", { 
+       method: "POST",
+       body: bodyContent,
+       headers:headersList
+     });
+     
+     let data = await response.text();
+     console.log(data);
+     
+    
+}
