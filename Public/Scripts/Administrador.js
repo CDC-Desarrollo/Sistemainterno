@@ -52,7 +52,7 @@ function togglePopup(tipo){
               <form id="frmOrdenar"> 
                 Ordenar<select name="cat" id="selCategoria">
                       <option value="">Seleccionar...</option>
-                      <option value="ID_Queja">ID_Empleado</option>
+                      <option value="ID_Queja">ID_Queja</option>
                       <option value="Nombre">Nombre</option>
                       <option value="Apellido">Apellido</option>
                       <option value="Departamento">Departamento</option>
@@ -260,6 +260,7 @@ async function llenarFormularioUsuarios(id) {
 
 //Filtrado 
 function Busqueda(Seccion){
+  console.log(Seccion)
   var Sec=Seccion
   const cat = document.getElementById('selCategoria')
   const busq = document.getElementById('txtBusqueda')
@@ -267,6 +268,7 @@ function Busqueda(Seccion){
  const seleccion = document.querySelector('input[name="por"]:checked');
   var sel="";
 
+  //Si un radiobuton esta seleccionado de le asigna un valor, si no queda como vacio
   if (seleccion) {
       console.log("Orden:", seleccion.value);
       sel=seleccion.value;
@@ -290,6 +292,7 @@ function Busqueda(Seccion){
       {
         if(busqueda!=""){
           Buscar(Sec,cat.value,busqueda)
+          console.log("Entro a busqueda",  Sec)
           
         }
         else{
@@ -305,7 +308,7 @@ function Busqueda(Seccion){
 }
 
   async function BuscarOrden(Seccion,lblCategoria,lblBusqueda,lblOrden) {
-    if(Seccion='Queja')
+    if(Seccion=='Queja')
     {
           let response = await fetch(`http://localhost:8080/Quejas/Filtrar/Ordenar?Categoria=${lblCategoria}&Buscar=${lblBusqueda}&Ordenar=${lblOrden}`, { 
           method: "GET"
@@ -314,7 +317,7 @@ function Busqueda(Seccion){
         let data = await response.json();
         InsertarEnQueja(data[0])    
     }
-    if(Seccion="Sugerencia"){
+    if(Seccion=="Sugerencia"){
           let response = await fetch(`http://localhost:8080/Sugerencias/Filtrar/Ordenar?Categoria=${lblCategoria}&Buscar=${lblBusqueda}&Ordenar=${lblOrden}`, { 
             method: "GET"
           });
@@ -322,7 +325,7 @@ function Busqueda(Seccion){
           let data = await response.json();
           InsertarEnSugerencia(data[0])  
     }
-    if(Seccion="Usuario"){
+    if(Seccion=="Usuario"){
           let response = await fetch(`http://localhost:8080/Usuarios/Filtrar/Ordenar?Categoria=${lblCategoria}&Buscar=${lblBusqueda}&Ordenar=${lblOrden}`, { 
             method: "GET"
           });
@@ -334,8 +337,9 @@ function Busqueda(Seccion){
   }
 
   async function Buscar(Seccion, lblCategoria,lblBusqueda) {
-   if(Seccion='Queja')
+   if(Seccion=="Queja")
     { 
+      console.log("Si entro al metodo")
           let response = await fetch(`http://localhost:8080/Quejas/Filtrar?Categoria=${lblCategoria}&Buscar=${lblBusqueda}`, { 
           method: "GET"
 
@@ -344,7 +348,7 @@ function Busqueda(Seccion){
         let data = await response.json();
         InsertarEnQueja(data[0]) 
    }
-   if(Seccion="Sugerencia"){
+   if(Seccion=="Sugerencia"){
         let response = await fetch(`http://localhost:8080/Sugerencias/Filtrar?Categoria=${lblCategoria}&Buscar=${lblBusqueda}`, { 
           method: "GET"
 
@@ -353,7 +357,7 @@ function Busqueda(Seccion){
         let data = await response.json();
         InsertarEnSugerencia(data[0]) 
     }
-   if(Seccion="Usuario"){
+   if(Seccion=="Usuario"){
         let response = await fetch(`http://localhost:8080/Usuarios/Filtrar?Categoria=${lblCategoria}&Buscar=${lblBusqueda}`, { 
           method: "GET"
 
@@ -365,7 +369,7 @@ function Busqueda(Seccion){
   }
 
   async function Orden(Seccion,lblCategoria,lblOrden) {
-    if(Seccion='Queja')
+    if(Seccion=="Queja")
     {
           let response = await fetch(`http://localhost:8080/Quejas/Ordenar?Categoria=${lblCategoria}&Ordenar=${lblOrden}`, { 
           method: "GET"
@@ -375,14 +379,14 @@ function Busqueda(Seccion){
         let data = await response.json();
         InsertarEnQueja(data[0])  
     }
-    if(Seccion="Sugerencia"){
+    if(Seccion=="Sugerencia"){
           let response = await fetch(`http://localhost:8080/Sugerencias/Ordenar?Categoria=${lblCategoria}&Ordenar=${lblOrden}`, { 
             method: "GET"
           });
           let data = await response.json();
           InsertarEnSugerencia(data[0])  
     }
-    if(Seccion="Usuario"){
+    if(Seccion=="Usuario"){
           let response = await fetch(`http://localhost:8080/Usuarios/Ordenar?Categoria=${lblCategoria}&Ordenar=${lblOrden}`, { 
             method: "GET"
           });
