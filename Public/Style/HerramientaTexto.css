@@ -1,0 +1,30 @@
+body{
+    background-color: whitesmoke;
+}
+
+#ContenedorText{
+    margin: auto;
+    height: 400px;
+    width: 600px;
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+}
+#Herramientas{
+    width: 600px;
+    background-color: rgb(230, 229, 232);
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px;
+    position: relative;
+}
+
+#TextoAviso{
+    padding: 10px;
+    height: auto;
+}
+
+#TextoAviso #textareas{
+    width: 100%;
+    height: 330px;
+}

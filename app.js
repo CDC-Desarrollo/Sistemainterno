@@ -334,7 +334,7 @@ app.get('/Avisos',(req,res)=>{
   });
 });
 
-app.post('/EditarAvisos',(req,res)=>{
+app.post('/Avisos/Editar',(req,res)=>{
   const filePath=path.join(__dirname,'data','Avisos.txt');
   const newContent = req.body.content; 
 

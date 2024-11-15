@@ -141,7 +141,20 @@ function togglePopup(tipo){
         RecuperarUsuarios()
     }
     if(tipo=='Avisos'){
-      T.innerHTML='Este es el inicio de los avisos'
+      T.innerHTML=`
+        <div id="ContenedorText">
+
+        <div id="Herramientas">
+            
+            <button id="SubirTxtbtn">Subir</button>
+        </div>
+        <div id="TextoAviso">
+            <div id="textareas" contenteditable="true">Escribe tu texto</div>
+        </div>
+        
+
+      </div>
+      `
     }
 }
 
@@ -683,6 +696,8 @@ document.getElementById('CerrarUsuarios').addEventListener('click', async()=>{
   RecuperarUsuarios()
 })
 
+
+
 function LimpiarFormularioUsuarios(){
    
   const txtNombre=document.getElementById("Nombres");
@@ -702,3 +717,6 @@ function LimpiarFormularioUsuarios(){
   txtAdm.checked=false;
 
 }
+
+const doc=document.getElementById('ContenedorText')
+console.log(doc);
