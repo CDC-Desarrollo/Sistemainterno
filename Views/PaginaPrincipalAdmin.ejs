@@ -39,7 +39,7 @@
   height: fit-content; overflow:hidden; box-sizing:border-box; border:20px solid rgba(108, 192, 74, 1); border-radius: 30px; padding: 0;; ">
     <div class="cont"style="width: fit-content ;height:fit-content;">
       <div class="Cerrar" onclick="togglePopupAddUsers()" id="CerrarUsuarios">&times;</div>
-      <h2 style="color: rgba(108, 192, 74, 1) ;">Registrar Usuario</h2>
+      <h2 style="color: rgba(108, 192, 74, 1) ;" id="lblRU">Registrar Usuario</h2>
 
 
           
@@ -58,7 +58,7 @@
               <label for="Correo">Correo</label>
               <input type="email" name="Correo" id="Correo">
             </div>
-            <div class="Q" id="Departamento">
+            <div class="Q" id="Departamentos">
               <label for="Dep">Departamento</label>
               <select id="Dep" name="Departamento" id="Departamento">
                   <option value=""> seleccionar...</option>
@@ -67,7 +67,7 @@
   
             <div class="Q">
               <label for="Ususario">Usuario</label>
-              <input type="text" name="Usuario" id="Ususario">
+              <input type="text" name="Usuario" id="Usuario">
             </div>
   
             <div class="Q">
@@ -79,7 +79,7 @@
             <input type="checkbox" name="Adm"  id="Adm" value="0"></div>
         </form>
   
-      <div class="enviar" style="padding: 10px;">
+      <div class="enviar" style="padding: 10px;" id="contBoton">  
         <button type="button" id="btnAgregarUsuarios"> <b>Enviar</b></button>
       </div>
    

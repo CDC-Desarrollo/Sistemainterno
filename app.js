@@ -269,6 +269,20 @@ app.post('/Usuarios/Agregar', (req,res)=>{
   )
 })
 
+app.put('/Usuarios/Actualizar', (req,res)=>{
+  const{Nombre,Apellido,Correo,Departamento,Contrasena,Adm,id}=req.body;
+  connection.execute(
+    'call ActualizarUsuario(?,?,?,?,?,?,?)',
+    [Nombre,Apellido,Correo,Contrasena,Departamento,Adm,id],
+    (err, results) => {
+      if (err) {
+          return res.status(500).json({ error: err.message });
+      }
+      res.json(results); 
+  })
+
+})
+
 app.get('/Usuarios/Filtrar', (req,res)=>{
   let consultaCat=req.query.Categoria;
   let consultaBusqueda=req.query.Buscar;

@@ -213,19 +213,85 @@ function togglePopupAddUsers(){
 
   document.getElementById("Quejas").classList.toggle("active");
   Departamentos();
+  const lblEditarUsuarios=document.getElementById("lblRU");
+  lblEditarUsuarios.innerText='Agregar Usuario';
+  lblEditarUsuarios.removeChild(document.getElementById("lblId"))
+
+  const btn=document.getElementById("btnAgregarUsuarios")
+  if(btn==undefined){
+    console.log('entro');
+
+    const btnUpdateUsuarios=document.createElement('button')
+    btnUpdateUsuarios.id="btnAgregarUsuarios"
+    btnUpdateUsuarios.innerText="Enviar"
+  
+
+  const contbtn=document.getElementById("contBoton")
+    console.log(contbtn)
+  contbtn.removeChild(document.getElementById("btnUpdateElement"))
+  contbtn.appendChild(btnUpdateUsuarios)
+    
+  const contDep=document.getElementById("Departamentos")
+    contDep.innerHTML=`
+    <label for="Dep">Departamento</label>
+    <select id="Dep" name="Departamento" id="Departamento">
+    <option value=""> seleccionar...</option>
+    </select> `
+
+    // const txtNombre=document.getElementById("Nombres");
+    // const txtApellidos=document.getElementById("Apellidos");
+    // const txtCorreo=document.getElementById("Correo");
+    // const txtDepartamento=document.getElementById("Departamento");
+    // const txtUsuario=document.getElementById("Usuario");
+    // const txtContrasena=document.getElementById("Contrasena");
+    // const txtAdm=document.getElementById("Adm");
+    // txtNombre.value="";
+    // txtApellidos.value="";
+    // txtCorreo.value="";
+    // // txtDepartamento.value=d.Departamento;
+    // txtUsuario.value="";
+    // txtContrasena.value="";
+    // var EsAdmin=d.Adm;
+    // txtAdm.checked=false;
+    LimpiarFormularioUsuarios()
+    Departamentos();
+  }
 }
 
 
 function Editar(id){
   console.log(id);
   document.getElementById("Quejas").classList.toggle("active");
+  const lblEditarUsuarios=document.getElementById("lblRU");
+  lblEditarUsuarios.innerText='Editar Usuario';
+  const lblId=document.createElement("h2");
+  lblId.id="lblId";
+  lblId.innerText=id;
+
+  lblEditarUsuarios.appendChild(lblId)
+
+  llenarFormularioUsuarios(id)
+  // BuscarUsuarioEditar( id);
   
 
 }
 
+// async function BuscarUsuarioEditar(id) {
+//   let response = await fetch(`http://localhost:8080/Usuarios/Filtrar?Categoria=ID_Empleado&Buscar=${id}`, { 
+//     method: "GET"
+
+//   });
+  
+//   let data = await response.json();
+//   console.log(data)
+  
+  
+// }
 
 async function llenarFormularioUsuarios(id) {
    
+  Departamentos();
+
   const txtNombre=document.getElementById("Nombres");
   const txtApellidos=document.getElementById("Apellidos");
   const txtCorreo=document.getElementById("Correo");
@@ -240,14 +306,20 @@ async function llenarFormularioUsuarios(id) {
   });
   
   let data = await response.json();
+
+  let d=data[0][0]
  
-  txtNombre.innerText=data.Nombre;
-  txtApellidos.innerText=data.Apellido;
-  txtCorreo.innerText=data.Correo;
-  txtDepartamento.innerText=data.Departamento;
-  txtUsuario.innerText=data.Usuario;
-  txtContrasena.innerText=data.Contrasena;
-  var EsAdmin=data.Adm;
+  console.log(d)
+ 
+  txtNombre.value=d.Nombre;
+  txtApellidos.value=d.Apellido;
+  txtCorreo.value=d.Correo;
+  // txtDepartamento.value=d.Departamento;
+  
+  console.log(d.Usuario)
+  txtUsuario.value=d.Usuario;
+  txtContrasena.value=d.Contrasena;
+  var EsAdmin=d.Adm;
 
   if(EsAdmin==1){
     txtAdm.checked=true;
@@ -256,6 +328,54 @@ async function llenarFormularioUsuarios(id) {
     txtAdm.checked=false;
   }
 
+  const btnUpdateUsuarios=document.createElement('button')
+  btnUpdateUsuarios.id="btnUpdateElement"
+  btnUpdateUsuarios.innerText="Actualizar"
+  btnUpdateUsuarios.setAttribute('onclick', 'ActualizarUsuarios()');
+
+  const contbtn=document.getElementById("contBoton")
+
+  contbtn.removeChild(document.getElementById("btnAgregarUsuarios"))
+  contbtn.appendChild(btnUpdateUsuarios)
+
+}
+
+
+async function ActualizarUser(params){
+  
+  const txtNombre=document.getElementById("Nombres");
+  const txtApellidos=document.getElementById("Apellidos");
+  const txtCorreo=document.getElementById("Correo");
+  const txtDepartamento=document.getElementById("Departamento");
+  const txtContrasena=document.getElementById("Contrasena");
+  const txtAdm=document.getElementById("Adm");
+  const txtid=document.getElementById("lblId");
+  if(txtAdm.checked){
+    txtAdm.value='1';
+  }
+  else{
+    txtAdm.setAttribute('value', '0'); 
+  }
+  
+  let bodyContent = JSON.stringify({
+    "Nombre":txtNombre.value,
+    "Apellido":txtApellidos.value,
+    "Correo":txtCorreo.valie,
+    "Departamento":txtDepartamento.value,
+    "Contrasena":txtContrasena.value,
+    "Adm":txtAdm.value,
+    "id":txtid.innerText
+  });
+  
+  let response = await fetch("http://localhost:8080/Usuarios/Actualizar", { 
+    method: "PUT",
+    body: bodyContent,
+    headers: headersList
+  });
+  
+  let data = await response.text();
+  console.log(data);
+  
 }
 
 //Filtrado 
@@ -585,16 +705,16 @@ function InsertarEnUsuarios(data){
   var ultInCell=document.createElement('td');
   ultInCell.textContent=U.UltimoInicio;
 
-  var OpEliminar=document.createElement('div');
-  OpEliminar.setAttribute('onclick', 'Eliminar("' + U.ID_Empleado + '")');
-  OpEliminar.innerHTML=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 25"><title>Eliminar</title><g id="_32.Trash" data-name="32.Trash"><circle cx="12" cy="12" r="11" style="fill:none;stroke:#000;stroke-miterlimit:10;stroke-width:2px"/><line x1="6" y1="10" x2="18" y2="10" style="fill:none;stroke:#000;stroke-miterlimit:10;stroke-width:2px"/><line x1="11" y1="7" x2="13" y2="7" style="fill:none;stroke:#000;stroke-miterlimit:10;stroke-width:2px"/><polyline points="9 10 9 17 15 17 15 10" style="fill:none;stroke:#000;stroke-miterlimit:10;stroke-width:2px"/></g></svg>`
+  // var OpEliminar=document.createElement('div');
+  // OpEliminar.setAttribute('onclick', 'Eliminar("' + U.ID_Empleado + '")');
+  // OpEliminar.innerHTML=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 25"><title>Eliminar</title><g id="_32.Trash" data-name="32.Trash"><circle cx="12" cy="12" r="11" style="fill:none;stroke:#000;stroke-miterlimit:10;stroke-width:2px"/><line x1="6" y1="10" x2="18" y2="10" style="fill:none;stroke:#000;stroke-miterlimit:10;stroke-width:2px"/><line x1="11" y1="7" x2="13" y2="7" style="fill:none;stroke:#000;stroke-miterlimit:10;stroke-width:2px"/><polyline points="9 10 9 17 15 17 15 10" style="fill:none;stroke:#000;stroke-miterlimit:10;stroke-width:2px"/></g></svg>`
  
   var OpEditar=document.createElement('div');
   OpEditar.setAttribute('onclick', 'Editar("' + U.ID_Empleado+ '")');
   OpEditar.innerHTML=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 25"><title>Editar</title><g id="_18.Pencil" data-name="18.Pencil"><circle cx="12" cy="12" r="11" style="fill:none;stroke:#000;stroke-miterlimit:10;stroke-width:2px"/><polygon points="15.071 7.101 8 14.172 8 17 10.828 17 17.899 9.929 15.071 7.101" style="fill:none;stroke:#000;stroke-miterlimit:10;stroke-width:2px"/><line x1="12" y1="10.172" x2="14.828" y2="13" style="fill:none;stroke:#000;stroke-miterlimit:10;stroke-width:2px"/></g></svg>`
  
   var opcionesCell=document.createElement('td');
-  opcionesCell.appendChild(OpEliminar);
+  // opcionesCell.appendChild(OpEliminar);
   opcionesCell.appendChild(OpEditar);
   
 
@@ -728,3 +848,4 @@ async function SubirText() {
      
     
 }
+
