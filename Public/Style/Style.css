@@ -90,8 +90,16 @@ button{
 
 }
 
+button :hover{
+    animation: scale-down-center;
+}
+
 #error-message{
     color:#eb0029;
     font-size: 15px;
     padding: 5px;
 }
+
+
+
+ 

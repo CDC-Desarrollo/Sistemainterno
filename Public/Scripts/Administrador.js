@@ -215,7 +215,7 @@ function togglePopupAddUsers(){
   Departamentos();
   const lblEditarUsuarios=document.getElementById("lblRU");
   lblEditarUsuarios.innerText='Agregar Usuario';
-  lblEditarUsuarios.removeChild(document.getElementById("lblId"))
+
 
   const btn=document.getElementById("btnAgregarUsuarios")
   if(btn==undefined){
@@ -237,25 +237,10 @@ function togglePopupAddUsers(){
     <select id="Dep" name="Departamento" id="Departamento">
     <option value=""> seleccionar...</option>
     </select> `
-
-    // const txtNombre=document.getElementById("Nombres");
-    // const txtApellidos=document.getElementById("Apellidos");
-    // const txtCorreo=document.getElementById("Correo");
-    // const txtDepartamento=document.getElementById("Departamento");
-    // const txtUsuario=document.getElementById("Usuario");
-    // const txtContrasena=document.getElementById("Contrasena");
-    // const txtAdm=document.getElementById("Adm");
-    // txtNombre.value="";
-    // txtApellidos.value="";
-    // txtCorreo.value="";
-    // // txtDepartamento.value=d.Departamento;
-    // txtUsuario.value="";
-    // txtContrasena.value="";
-    // var EsAdmin=d.Adm;
-    // txtAdm.checked=false;
-    LimpiarFormularioUsuarios()
     Departamentos();
   }
+  LimpiarFormularioUsuarios()
+  RecuperarUsuarios()
 }
 
 
@@ -341,12 +326,12 @@ async function llenarFormularioUsuarios(id) {
 }
 
 
-async function ActualizarUser(params){
+async function ActualizarUsuarios(){
   
   const txtNombre=document.getElementById("Nombres");
   const txtApellidos=document.getElementById("Apellidos");
   const txtCorreo=document.getElementById("Correo");
-  const txtDepartamento=document.getElementById("Departamento");
+  const txtDepartamento=document.getElementById("Dep");
   const txtContrasena=document.getElementById("Contrasena");
   const txtAdm=document.getElementById("Adm");
   const txtid=document.getElementById("lblId");
@@ -356,24 +341,27 @@ async function ActualizarUser(params){
   else{
     txtAdm.setAttribute('value', '0'); 
   }
+  console.log("Nombre",txtNombre.value,"Apellido",txtApellidos.value,"Correo",txtCorreo.value,"Departamento",txtDepartamento.value,"Contrasena",txtContrasena.value,"Adm",txtAdm.value,"id",txtid.innerText)
   
   let bodyContent = JSON.stringify({
     "Nombre":txtNombre.value,
     "Apellido":txtApellidos.value,
-    "Correo":txtCorreo.valie,
+    "Correo":txtCorreo.value,
     "Departamento":txtDepartamento.value,
     "Contrasena":txtContrasena.value,
     "Adm":txtAdm.value,
     "id":txtid.innerText
   });
+
+  console.log(bodyContent)
   
   let response = await fetch("http://localhost:8080/Usuarios/Actualizar", { 
     method: "PUT",
     body: bodyContent,
-    headers: headersList
+    headers:{'Content-Type': 'application/json'}
   });
   
-  let data = await response.text();
+  let data = await response.json();
   console.log(data);
   
 }
@@ -385,7 +373,7 @@ function Busqueda(Seccion){
   const cat = document.getElementById('selCategoria')
   const busq = document.getElementById('txtBusqueda')
   busqueda=busq.value;
- const seleccion = document.querySelector('input[name="por"]:checked');
+  const seleccion = document.querySelector('input[name="por"]:checked');
   var sel="";
 
   //Si un radiobuton esta seleccionado de le asigna un valor, si no queda como vacio
@@ -810,16 +798,14 @@ function LimpiarFormularioUsuarios(){
   const txtNombre=document.getElementById("Nombres");
   const txtApellidos=document.getElementById("Apellidos");
   const txtCorreo=document.getElementById("Correo");
-  const txtDepartamento=document.getElementById("Departamento");
   const txtUsuario=document.getElementById("Usuario");
   const txtContrasena=document.getElementById("Contrasena");
   const txtAdm=document.getElementById("Adm");
 
-  txtNombre.innerText='';
-  txtApellidos.innerText='';
-  txtCorreo.innerText='';
-  txtDepartamento.innerText='';
-  txtUsuario.innerText='';
+  txtNombre.value='';
+  txtApellidos.value='';
+  txtCorreo.value='';
+  txtUsuario.value='';
   txtContrasena.innerText='';
   txtAdm.checked=false;
 
