@@ -14,7 +14,7 @@
             <li id="subb"><a href="">Informar</a>
                 <ul class="submenu">
                   <li ><div onclick="togglePopupQuejas()" style="cursor:pointer;">Quejas</div></li>
-                  <li><div onclick="togglePopupQuejas()" style="cursor:pointer;">Sugerencias</div></li>
+                  <li><div onclick="togglePopupSugerencias()" style="cursor:pointer;">Sugerencias</div></li>
                 </ul>
             </li>
             
@@ -30,9 +30,9 @@
     </div>
     <div class="popup" id="Quejas">
         <div class="overlay" onclick="togglePopupQuejas()"></div>
-    <div class="content"  style=" background-color: rgba(108, 192, 74, 0.6);width: 430px;
-    height: 600px; box-sizing: border-box; border: 20px solid rgba(108, 192, 74, 0.6); border-radius: 30px; padding: 0;; ">
-      <div class="cont"style="width: fit-content;">
+    <div class="content"  style=" background-color: whitesmoke;width:fit-content;
+    height: fit-content; overflow:hidden; box-sizing:border-box; border:20px solid rgba(108, 192, 74, 1); border-radius: 30px; padding: 0;; ">
+      <div class="cont"style="width: fit-content ;height:fit-content;">
         <div class="Cerrar" onclick="togglePopupQuejas()">&times;</div>
         <h2 style="color: rgba(108, 192, 74, 1) ;">QUEJAS</h2>
         <p>El siguiente formulario será eviado con tu nombre y tu departamento</p>
@@ -72,13 +72,13 @@
 
               <div class="Q" id="QuejaRazon" >
                 <label for="RazonQueja">Razon</label>
-                <input type="text" name="RazonQueja" id="RazonQueja">
+               <textarea name="RazonQueja" id="RazonQueja"></textarea> 
 
               </div>
           </form>
 
         <div class="enviar" style="padding: 10px;">
-          <button type="button" id="btnEnviarQueja"> <b>Enviar</b></button>
+          <button type="button" class="btns" id="btnEnviarQueja"> <b>Enviar</b></button>
         </div>
       </div>
       
@@ -86,6 +86,35 @@
   </div>
   </div>
   
+  <div class="popup" id="Sugerencias">
+    <div class="overlay" onclick="togglePopupSugerencias()"></div>
+<div class="content"  style=" background-color: whitesmoke;width:fit-content;
+height: fit-content; overflow:hidden; box-sizing:border-box; border:20px solid rgba(108, 192, 74, 1); border-radius: 30px; padding: 0;; ">
+  <div class="cont"style="width: fit-content ;height:fit-content;">
+    <div class="Cerrar" onclick="togglePopupSugerencias()">&times;</div>
+    <h2 style="color: rgba(108, 192, 74, 1) ;">SUGERENCIAS</h2>
+    <p>El siguiente formulario será eviado con tu nombre y tu departamento</p>
+    <div class="Queja">
+
+      
+      <form action="" id="frmQueja">
+
+          <div class="Q" id="QuejaRazon">
+            <label for="RazonQueja" >Razon</label>
+            <textarea name="RazonQueja" id="RazonQueja"></textarea> 
+
+          </div>
+      </form>
+
+    <div class="enviar" style="padding: 10px;">
+      <button type="button" class="btns" id="btnEnviarSugerencia"> <b>Enviar</b></button>
+    </div>
+  </div>
+  
+</div>
+</div>
+</div>
+
   <script src="/Scripts/Principal.js"></script>
   <script src="/Scripts/Avisos.js"> </script>
 

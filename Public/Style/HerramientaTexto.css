@@ -9,7 +9,10 @@ body{
     background-color: white;
     border-radius: 10px;
     overflow: hidden;
-}
+    -webkit-box-shadow: 23px 21px 25px -16px rgba(0,0,0,0.23);
+    -moz-box-shadow: 23px 21px 25px -16px rgba(0,0,0,0.23);
+    box-shadow: 23px 21px 25px -16px rgba(0,0,0,0.23);
+    }
 #Herramientas{
     width: 600px;
     background-color: rgb(230, 229, 232);

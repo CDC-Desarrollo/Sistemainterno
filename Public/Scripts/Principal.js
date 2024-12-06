@@ -4,6 +4,11 @@ function togglePopupQuejas(){
     Departamentos();
   }
 
+  function togglePopupSugerencias(){
+    document.getElementById("Sugerencias").classList.toggle("active");
+    Departamentos();
+  }
+
   async function Departamentos() {
         let response = await fetch('http://localhost:8080/Departamento', { 
           method: "GET"
@@ -34,7 +39,7 @@ function togglePopupQuejas(){
     }
 
     document.getElementById('btnEnviarQueja').addEventListener('click', async()=>{
-      let form=document.getElementById('frmQueja');
+       let form=document.getElementById('frmQueja');
        let fromdata=new FormData(form);
        const cadenaInicioSesion=new URLSearchParams(fromdata).toString()
 

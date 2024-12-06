@@ -17,6 +17,13 @@ app.use(express.static(path.join(__dirname, 'Public')));
 
 app.use(express.static(path.join(__dirname, 'Data')));
 
+function isAuthenticated(req, res, next) {
+  if (req.isAuthenticated && req.isAuthenticated()) {
+      return next();
+  }
+  res.redirect('/login'); // Redirigir al login si no está autenticado
+}
+
 const nodemailer = require("nodemailer");
 const connection=mysql2.createConnection({
     host:process.env.DB_Host,
@@ -59,7 +66,7 @@ app.get('/PrincipalPage', (req,res)=>{
 app.get('/Admin', (req,res)=>{
   res.render('LoginAdmin');
 })
-
+// isAuthenticated,
 app.get('/PrincipalPageAdmin', (req,res)=>{
   res.render('PaginaPrincipalAdmin')
   
@@ -79,6 +86,7 @@ app.post('/LogIn',(req,res)=>{
               return res.status(500).json({ error: err.message });
           }
           res.json(results[0]); 
+          
       }
   );
 });
