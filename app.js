@@ -95,7 +95,7 @@ app.post('/Queja',(req,res)=>{
   const {IDEmp,IDDep,QuejaDep, Categoria, RazonQueja } = req.body;
 
   connection.execute(
-    'INSERT INTO `sic`.`queja` (`ID_Empleado`, `Departamento`, `DepartamentoQueja`, `Categoria`, `Razon`) VALUES (?, ?, ?, ?, ?)',
+    'call AgregarQuejas(?, ?, ?, ?, ?);',
       [IDEmp,IDDep,QuejaDep, Categoria, RazonQueja],
       (err, results) => {
           if (err) {

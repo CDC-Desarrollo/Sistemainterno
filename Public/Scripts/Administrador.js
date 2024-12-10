@@ -79,6 +79,7 @@ function togglePopup(tipo){
               <th>Categoria</th>
               <th>Departamento Queja</th>
               <th>Razon</th>
+              <th>Ultima revision</th>
             </tr>
           </thead>
           <tbody id="InsertSugerencias">
@@ -105,7 +106,7 @@ function togglePopup(tipo){
                       <option value="Departamento">Departamento</option>
                       <option value="Categoria">Categoria</option>
                       <option value="DepartamentoQueja">Departamento queja</option>
-
+                    
                 </select>
                   <input type="text" id="txtBusqueda">
                  <input type="radio" name="por" value="asc">Ascendente
@@ -131,6 +132,7 @@ function togglePopup(tipo){
       <th>Administrador</th>
       <th>Ultima sesion</th>
       <th>Opciones</th>
+      
       </tr>
     </thead>
     <tbody id="InsertSugerencias">
@@ -257,10 +259,11 @@ function Editar(id){
 
   llenarFormularioUsuarios(id)
   // BuscarUsuarioEditar( id);
-  
-
 }
 
+function EditarQueja(id){
+  document.getElementById("Quejas").classList.toggle("active");
+}
 // async function BuscarUsuarioEditar(id) {
 //   let response = await fetch(`http://localhost:8080/Usuarios/Filtrar?Categoria=ID_Empleado&Buscar=${id}`, { 
 //     method: "GET"
@@ -596,6 +599,31 @@ function InsertarEnQueja(data) {
     var RazonCell = document.createElement('td');
     RazonCell.textContent = Q.Razon;
 
+    var RevCell = document.createElement('td');
+
+    var EstadoH3 =document.createElement('h3');
+    EstadoH3.textContent=Q.Estatus;
+
+    var ComentarioH3 =document.createElement('p');
+    ComentarioH3.textContent=Q.Descripcion;
+
+    var QuienRevisoH3 =document.createElement('p');
+    QuienRevisoH3.textContent=Q.Revisa;
+
+    var FechaH3 =document.createElement('p');
+    FechaH3.textContent=Q.UltimaRevision;
+
+
+    var OpEditar=document.createElement('div');
+    OpEditar.setAttribute('onclick', 'EditarQueja("' + Q.ID_Queja+ '")');
+    OpEditar.innerHTML=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 25" style="cursor: pointer;"><title>Editar</title><g id="_18.Pencil" data-name="18.Pencil"><circle cx="12" cy="12" r="11" style="fill:none;stroke:#000;stroke-miterlimit:10;stroke-width:2px"/><polygon points="15.071 7.101 8 14.172 8 17 10.828 17 17.899 9.929 15.071 7.101" style="fill:none;stroke:#000;stroke-miterlimit:10;stroke-width:2px"/><line x1="12" y1="10.172" x2="14.828" y2="13" style="fill:none;stroke:#000;stroke-miterlimit:10;stroke-width:2px"/></g></svg>`
+    
+    RevCell.appendChild(EstadoH3)
+    RevCell.appendChild(ComentarioH3)
+    RevCell.appendChild(QuienRevisoH3)
+    RevCell.appendChild(FechaH3)
+    RevCell.appendChild(OpEditar)
+
     // Agregar las celdas a la fila
     tabReng.appendChild(idCell);
     tabReng.appendChild(nombreCell);
@@ -604,6 +632,7 @@ function InsertarEnQueja(data) {
     tabReng.appendChild(categoriaCell);
     tabReng.appendChild(departamentoQCell);
     tabReng.appendChild(RazonCell);
+    tabReng.appendChild(RevCell);
 
     // Agregar la fila al cuerpo de la tabla
     TabSug.appendChild(tabReng);
@@ -699,7 +728,7 @@ function InsertarEnUsuarios(data){
  
   var OpEditar=document.createElement('div');
   OpEditar.setAttribute('onclick', 'Editar("' + U.ID_Empleado+ '")');
-  OpEditar.innerHTML=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 25"><title>Editar</title><g id="_18.Pencil" data-name="18.Pencil"><circle cx="12" cy="12" r="11" style="fill:none;stroke:#000;stroke-miterlimit:10;stroke-width:2px"/><polygon points="15.071 7.101 8 14.172 8 17 10.828 17 17.899 9.929 15.071 7.101" style="fill:none;stroke:#000;stroke-miterlimit:10;stroke-width:2px"/><line x1="12" y1="10.172" x2="14.828" y2="13" style="fill:none;stroke:#000;stroke-miterlimit:10;stroke-width:2px"/></g></svg>`
+  OpEditar.innerHTML=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 25" style="cursor: pointer;><title>Editar</title><g id="_18.Pencil" data-name="18.Pencil"><circle cx="12" cy="12" r="11" style="fill:none;stroke:#000;stroke-miterlimit:10;stroke-width:2px"/><polygon points="15.071 7.101 8 14.172 8 17 10.828 17 17.899 9.929 15.071 7.101" style="fill:none;stroke:#000;stroke-miterlimit:10;stroke-width:2px"/><line x1="12" y1="10.172" x2="14.828" y2="13" style="fill:none;stroke:#000;stroke-miterlimit:10;stroke-width:2px"/></g></svg>`
  
   var opcionesCell=document.createElement('td');
   // opcionesCell.appendChild(OpEliminar);

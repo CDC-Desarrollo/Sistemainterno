@@ -10,10 +10,11 @@ table {
     width: 100%;
     border-collapse: collapse; /* Elimina espacios entre celdas */
     margin: 20px 0;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
 }
 th, td {
     padding: 10px; /* Espaciado dentro de las celdas */
-    text-align: left; /* Alineación del texto */
+    text-align: center; /* Alineación del texto */
     border: 1px solid #ddd; /* Borde de las celdas */
 }
 td{
@@ -51,5 +52,6 @@ li{
     flex-wrap: wrap;
     flex-direction: row;
     gap: 15px;
+    
 }
 
