@@ -89,50 +89,42 @@
 </div>
 
   
-<!-- <div class="popup" id="Quejas">
-  <div class="overlay" onclick="togglePopupEditUsers()"></div>
+<div class="popup" id="Quejas2">
+  <div class="overlay" onclick="togglePopupEdiarRespQueja()"></div>
 <div class="content" style=" background-color: whitesmoke;width:fit-content;
 height: fit-content; overflow:hidden; box-sizing:border-box; border:20px solid rgba(108, 192, 74, 1); border-radius: 30px; padding: 0;; ">
-<div class="cont"style="width: fit-content ;height:fit-content;">
-  <div class="Cerrar" onclick="togglePopupEditUsers()" id="CerrarUsuarios">&times;</div>
-  <h2 style="color: rgba(108, 192, 74, 1) ;">Editar Usuario</h2>
+<div class="cont"style="width: fit-content ;height:fit-content; ">
+  <div class="Cerrar" onclick="togglePopupEdiarRespQueja()" id="CerrarUsuarios">&times;</div>
+  <h2 style="color: rgba(108, 192, 74, 1) ;">Seguimiento</h2>
 
 
       
-    <form action="" id="frmAggUsuario" enctype="application/x-www-form-urlencoded">
+    <form action="" id="frmActualizarSeguimiento" enctype="application/x-www-form-urlencoded">
 
-        <div class="Q">
-          <label for="Nombres">Nombres</label>
-          <input type="text" name="Nombres" id="Nombres">
-        </div>
-        <div class="Q">
-          <label for="Apellidos">Apellidos</label>
-          <input type="text" name="Apellidos" id="Apellidos">
-        </div>
-
-        <div class="Q">
-          <label for="Correo">Correo</label>
-          <input type="email" name="Correo" id="Correo">
-        </div>
-        <div class="Q" id="Departamento">
-          <label for="Dep">Departamento</label>
-          <select id="Dep" name="Departamento" id="Departamento">
-              <option value=""> seleccionar...</option>
-          </select>
+      
+        <div class="Q" >
+          <label for="Estado">Estado</label>
+              <select id="Estado" name="Estado" id="Estado">
+                  <option value="">seleccionar...</option>
+                  <option value="Pendiente">Pendiente</option>
+                  <option value="Revision">En Revision</option>
+                  <option value="Finalizado">Finalizado</option>
+              </select>
         </div>
 
         <div class="Q">
-          <label for="Ususario">Usuario</label>
-          <input type="text" name="Usuario" id="Ususario">
+          <label for="Comentario">Comentario</label>
+          <textarea name="Comentario" id="Comentario"></textarea>
         </div>
 
         <div class="Q">
-          <label for="Contraseña">Contraseña</label>
-          <input type="text" name="Contrasena" id="Contrasena">
+          <label for="Asignar">Asignar</label>
+              <select id="Asignar" name="Asignar" id="Asignar">
+                  <option value="">seleccionar...</option>
+                  
+              </select>
         </div>
 
-        <div class="Q"><label for="Adm">Usuario Administrador</label>
-        <input type="checkbox" name="Adm"  id="Adm" value="0"></div>
     </form>
 
   <div class="enviar" style="padding: 10px;">
@@ -142,7 +134,7 @@ height: fit-content; overflow:hidden; box-sizing:border-box; border:20px solid r
 </div>
 
 </div>
-</div> -->
+</div>
 
 
 

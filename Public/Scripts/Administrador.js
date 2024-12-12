@@ -196,6 +196,7 @@ async function RecuperarQuejas() {
         const T=document.getElementById('Pestana');
         T.innerHTML=`<h1 style="color:red;"></h2>`
       }
+     
 }
 
 
@@ -261,8 +262,34 @@ function Editar(id){
   // BuscarUsuarioEditar( id);
 }
 
-function EditarQueja(id){
-  document.getElementById("Quejas").classList.toggle("active");
+async function EditarQueja(id){
+  document.getElementById("Quejas2").classList.toggle("active");
+
+  var selectAsig=document.getElementById("Asignar");
+  selectAsig.innerHTML=``;
+  
+  let response = await fetch("http://localhost:8080/Usuarios", { 
+    method: "GET"
+  });
+  
+  let data = await response.json();
+  console.log(data);
+  data.forEach(U => {
+    if(U.Adm==1){
+      
+      var addOpt=document.createElement("option")
+      addOpt.value=U.ID_Empleado;
+      addOpt.innerText=U.Nombre+" "+U.Apellido;
+      
+      selectAsig.appendChild(addOpt);
+
+    }
+    
+  });
+}
+
+function togglePopupEdiarRespQueja(){
+  document.getElementById("Quejas2").classList.toggle("active");
 }
 // async function BuscarUsuarioEditar(id) {
 //   let response = await fetch(`http://localhost:8080/Usuarios/Filtrar?Categoria=ID_Empleado&Buscar=${id}`, { 
@@ -618,12 +645,16 @@ function InsertarEnQueja(data) {
     OpEditar.setAttribute('onclick', 'EditarQueja("' + Q.ID_Queja+ '")');
     OpEditar.innerHTML=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 25" style="cursor: pointer;"><title>Editar</title><g id="_18.Pencil" data-name="18.Pencil"><circle cx="12" cy="12" r="11" style="fill:none;stroke:#000;stroke-miterlimit:10;stroke-width:2px"/><polygon points="15.071 7.101 8 14.172 8 17 10.828 17 17.899 9.929 15.071 7.101" style="fill:none;stroke:#000;stroke-miterlimit:10;stroke-width:2px"/><line x1="12" y1="10.172" x2="14.828" y2="13" style="fill:none;stroke:#000;stroke-miterlimit:10;stroke-width:2px"/></g></svg>`
     
-    RevCell.appendChild(EstadoH3)
-    RevCell.appendChild(ComentarioH3)
-    RevCell.appendChild(QuienRevisoH3)
-    RevCell.appendChild(FechaH3)
-    RevCell.appendChild(OpEditar)
+    var ContenedorQuejas=document.createElement('div');
+    ContenedorQuejas.className="ContenedorQuejas";
+    
+    ContenedorQuejas.appendChild(EstadoH3)
+    ContenedorQuejas.appendChild(ComentarioH3)
+    ContenedorQuejas.appendChild(QuienRevisoH3)
+    ContenedorQuejas.appendChild(FechaH3)
+    ContenedorQuejas.appendChild(OpEditar)
 
+    RevCell.appendChild(ContenedorQuejas);
     // Agregar las celdas a la fila
     tabReng.appendChild(idCell);
     tabReng.appendChild(nombreCell);
