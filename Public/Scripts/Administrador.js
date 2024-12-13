@@ -291,6 +291,10 @@ async function EditarQueja(id){
 function togglePopupEdiarRespQueja(){
   document.getElementById("Quejas2").classList.toggle("active");
 }
+
+function ResponderQueja() {
+  
+}
 // async function BuscarUsuarioEditar(id) {
 //   let response = await fetch(`http://localhost:8080/Usuarios/Filtrar?Categoria=ID_Empleado&Buscar=${id}`, { 
 //     method: "GET"

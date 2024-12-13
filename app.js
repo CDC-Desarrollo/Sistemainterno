@@ -188,6 +188,21 @@ app.get('/Quejas/Filtrar/Ordenar', (req,res)=>{
       
 })
 
+//Revisar 
+app.post('/Quejas/Actualizar', (req,res)=>{
+  const {Nombres, Apellidos, Correo, Departamento, Usuario, Contrasena, Adm}=req.body;
+  connection.execute(
+    'insert into Empleado(`Nombre`, `Apellido`,`Correo`,`Departamento`, `usuario`, `contrasena`, `Adm`)values(?,?,?,?,?,?,?)',
+    [Nombres,Apellidos, Correo, Departamento, Usuario, Contrasena, Adm],
+      (err, results) => {
+          if (err) {
+              return res.status(500).json({ error: err.message });
+          }
+          res.json(results); 
+      }
+  )
+})
+
 app.get('/Sugerencias',(req,res)=>{
   connection.execute(
     'select * from Vista_Sugerencia',
@@ -368,6 +383,7 @@ app.post('/Avisos/Editar',(req,res)=>{
     res.send('Archivo actualizado con éxito');
   });
 })
+
 var transporter = nodemailer.createTransport({
   host: "controldecarga.com",
   port: 465,
